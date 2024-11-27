@@ -1,0 +1,49 @@
+{
+  "name": "@cychann/editorjs-quote",
+  "type": "module",
+  "version": "1.0.1",
+  "description": "Editor.js Quote Block with multiple style options",
+  "keywords": [
+    "editorjs",
+    "editor.js",
+    "quote"
+  ],
+  "packageManager": "yarn@4.0.2",
+  "main": "./dist/editorjs-quote.umd.js",
+  "module": "./dist/editorjs-quote.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/editorjs-quote.es.js",
+      "require": "./dist/editorjs-quote.umd.js"
+    }
+  },
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cychann/editorjs-quote"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@yarnpkg/sdks": "^3.2.0",
+    "typescript": "5.0.4",
+    "vite": "^6.0.1",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vite-plugin-dts": "^4.3.0"
+  },
+  "dependencies": {
+    "@codexteam/icons": "^0.3.2",
+    "@editorjs/dom": "^1.0.1",
+    "@editorjs/editorjs": "^2.30.7"
+  }
+}
