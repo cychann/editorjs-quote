@@ -7,7 +7,6 @@
 }
 
 .blockquote_type1 {
-  background: url("/assets/IconQuote.svg") no-repeat 50% 0; /* 절대 경로 사용 */
   color: #333;
   font-size: 15pt;
   line-height: 23pt;

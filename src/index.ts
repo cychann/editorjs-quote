@@ -30,9 +30,9 @@ interface QuoteCSS {
 }
 
 enum QuoteType {
-  Type1 = "type1",
-  Type2 = "type2",
-  Type3 = "type3",
+  QuotationMark = "quotationMark",
+  VerticalLine = "verticalLine",
+  Box = "box",
 }
 
 export default class Quote implements BlockTool {
@@ -42,7 +42,7 @@ export default class Quote implements BlockTool {
   private _block: BlockAPI;
   private _data: QuoteData;
   private _CSS: QuoteCSS;
-  private _quoteElement!: HTMLElement; // 인용구 블록을 참조할 수 있도록 인스턴스 변수 추가
+  private _quoteElement!: HTMLElement;
 
   constructor({ data, config, api, readOnly, block }: QuoteParams) {
     const { DEFAULT_TYPE } = Quote;
@@ -58,6 +58,7 @@ export default class Quote implements BlockTool {
         config.defaultType ||
         DEFAULT_TYPE,
     };
+
     this._CSS = {
       baseClass: this.api.styles.block,
       wrapper: "cdx-quote",
@@ -109,19 +110,22 @@ export default class Quote implements BlockTool {
     };
   }
 
-  get settings(): { name: QuoteType; label: string }[] {
+  get settings(): { name: QuoteType; label: string; icon?: string }[] {
     return [
       {
-        name: QuoteType.Type1,
-        label: "인용구1",
+        name: QuoteType.QuotationMark,
+        label: "Quote Type 1",
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="editor-icon"><path id="Vector" d="M13.4831 16L12.9348 15.2444C13.6348 14.7628 14.2457 14.168 14.7411 13.4856C15.1102 12.9691 15.3133 12.3568 15.3244 11.7268L15.3244 11.5341C15.1838 11.5523 15.0551 11.5683 14.9383 11.5821C14.8287 11.5955 14.7184 11.6026 14.6079 11.6032C14.379 11.6097 14.1512 11.5704 13.9384 11.4876C13.7256 11.4048 13.5324 11.2803 13.3708 11.1218C13.2095 10.9659 13.0826 10.7794 12.9979 10.5738C12.9132 10.3682 12.8725 10.1478 12.8783 9.92622C12.8654 9.67057 12.9047 9.41498 12.994 9.17437C13.0833 8.93376 13.2207 8.71295 13.3983 8.52485C13.5784 8.34918 13.7938 8.21199 14.031 8.12199C14.2682 8.03198 14.5219 7.99112 14.7761 8.00199C15.0814 7.99561 15.3842 8.05802 15.6609 8.18438C15.9376 8.31074 16.1809 8.49766 16.3718 8.73067C16.8042 9.25948 17.0264 9.92326 16.9975 10.5996C16.9991 11.6387 16.6913 12.6558 16.1115 13.5267C15.4258 14.5249 14.5296 15.3682 13.4831 16ZM8.57836 16L8.03081 15.2444C8.73082 14.7628 9.34168 14.168 9.83712 13.4856C10.2062 12.9691 10.4093 12.3568 10.4204 11.7268L10.4204 11.5341C10.2894 11.5523 10.1652 11.5683 10.0477 11.5821C9.93338 11.5959 9.81836 11.6029 9.70321 11.6032C9.47579 11.612 9.24899 11.5743 9.03726 11.4927C8.82554 11.4111 8.63353 11.2872 8.47347 11.129C8.31679 10.9694 8.1944 10.7808 8.11352 10.5742C8.03264 10.3676 7.99491 10.1473 8.00255 9.9262C7.97599 9.41221 8.15775 8.90869 8.50843 8.52483C8.68516 8.34862 8.89803 8.21093 9.13304 8.12082C9.36806 8.03072 9.61992 7.99022 9.87208 8.00199C10.1793 7.99665 10.4838 8.05945 10.7626 8.18565C11.0414 8.31186 11.2874 8.4982 11.482 8.73067C11.9225 9.25585 12.1503 9.92102 12.1218 10.5996C12.1182 11.6281 11.808 12.6333 11.229 13.4922C10.5339 14.4995 9.63105 15.3538 8.57836 16Z" fill="#12161A"/></g></svg>`,
       },
       {
-        name: QuoteType.Type2,
-        label: "인용구2",
+        name: QuoteType.VerticalLine,
+        label: "Quote Type 2",
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="editor-icon"><path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M5 5V19H7V5H5ZM18.3198 7H9.68019L9.01941 10.3039L10.9806 10.6961L11.3198 9H13V15.5H11V17.5H17V15.5H15V9H16.6802L17.0194 10.6961L18.9806 10.3039L18.3198 7Z" fill="#12161A"/></g></svg>`,
       },
       {
-        name: QuoteType.Type3,
-        label: "인용구3",
+        name: QuoteType.Box,
+        label: "Quote Type 3",
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="editor-icon"><path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M17 7H7V17H17V7ZM5 5V19H19V5H5Z" fill="#12161A"/></g></svg>`,
       },
     ];
   }
@@ -136,6 +140,15 @@ export default class Quote implements BlockTool {
         innerHTML: this._data.text,
       }
     );
+
+    if (this._data.type === QuoteType.QuotationMark) {
+      const icon = this.settings.find(
+        (setting) => setting.name === QuoteType.QuotationMark
+      )?.icon;
+      this._quoteElement.style.background = `url("data:image/svg+xml;utf8,${encodeURIComponent(
+        icon!
+      )}") no-repeat 50% 0`;
+    }
 
     this._quoteElement.addEventListener("keydown", (event: KeyboardEvent) =>
       this.handleKeydown(event)
@@ -187,11 +200,11 @@ export default class Quote implements BlockTool {
 
   getTypeClass(type: QuoteType): string {
     switch (type) {
-      case QuoteType.Type1:
+      case QuoteType.QuotationMark:
         return "blockquote_type1";
-      case QuoteType.Type2:
+      case QuoteType.VerticalLine:
         return "blockquote_type2";
-      case QuoteType.Type3:
+      case QuoteType.Box:
         return "blockquote_type3";
       default:
         return "blockquote_type1";
@@ -216,7 +229,7 @@ export default class Quote implements BlockTool {
 
   renderSettings(): HTMLElement | MenuConfig {
     return this.settings.map((item) => ({
-      icon: undefined,
+      icon: item.icon || undefined,
       label: this.api.i18n.t(item.label),
       onActivate: () => this._toggleTune(item.name),
       isActive: this._data.type === item.name,
