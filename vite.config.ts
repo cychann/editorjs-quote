@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import { resolve } from "path";
+import path, { resolve } from "path";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import dts from "vite-plugin-dts";
 
@@ -21,6 +21,10 @@ export default defineConfig({
         },
       },
     },
+  },
+  publicDir: path.resolve(__dirname, "assets"),
+  server: {
+    open: "./test/index.html",
   },
 
   plugins: [cssInjectedByJsPlugin(), dts()],

@@ -173,15 +173,6 @@ export default class Quote implements BlockTool {
       }
     );
 
-    if (this._data.type === QuoteType.QuotationMark) {
-      const icon = this.settings.find(
-        (setting) => setting.name === QuoteType.QuotationMark
-      )?.icon;
-      this._quoteElement.style.background = `url("data:image/svg+xml;utf8,${encodeURIComponent(
-        icon!
-      )}") no-repeat 50% 0`;
-    }
-
     this._quoteElement.addEventListener("keydown", (event: KeyboardEvent) =>
       this.handleKeydown(event)
     );

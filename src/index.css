@@ -7,6 +7,7 @@
 }
 
 .blockquote_type1 {
+  background: url("/icons/IconQuote.svg") no-repeat 50% 0;
   color: #333;
   font-size: 15pt;
   line-height: 23pt;
