@@ -2,6 +2,10 @@
 
 Provides customizable Quote Blocks with multiple styles for Editor.js.
 
+## Preview
+
+![Quote Block Preview](assets/gifs/preview.gif)
+
 ## Installation
 
 Get the package:
