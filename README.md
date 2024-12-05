@@ -1,6 +1,6 @@
 # EditorJS Quote Block
 
-Provides customizable Quote Blocks with multiple styles for Editor.js.
+Provides a wider range of style-type quote blocks.
 
 ## Preview
 
