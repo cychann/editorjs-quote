@@ -1,7 +1,7 @@
 {
   "name": "@cychann/editorjs-quote",
   "type": "module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Editor.js Quote Block with multiple style options",
   "keywords": [
     "editorjs",
