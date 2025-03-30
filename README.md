@@ -2,7 +2,7 @@
 
 Provides a wider range of style-type quote blocks for [Editor.js](https://editorjs.io/). 
 
-This library is part of the [Awesome Editor.js repository](https://github.com/editor-js/awesome-editorjs).
+This library was contributed to the [Awesome Editor.js repository](https://github.com/editor-js/awesome-editorjs).  
 
 ## Preview
 
