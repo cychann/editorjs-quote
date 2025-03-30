@@ -1,6 +1,7 @@
 # EditorJS Quote Block
 
-Provides a wider range of style-type quote blocks.
+Provides a wider range of style-type quote blocks for [Editor.js](https://editorjs.io/).
+This library is part of the [Awesome Editor.js repository](https://github.com/editor-js/awesome-editorjs).
 
 ## Preview
 
